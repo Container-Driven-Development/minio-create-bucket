@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-create-bucket
+spec:
+  template:
+    metadata:
+      labels:
+        app: minio-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: minio-mc
+        image: ghcr.io/container-driven-development/minio-create-bucket:v0.9
+        env:
+        - name: MINIO_ENDPOINT
+          value: minio
+        - name: MINIO_PORT
+          value: "443"
+        volumeMounts:
+        - name: minio-configuration
+          mountPath: /config
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 100m
+          limits:
+            memory: 128Mi
+            cpu: 100m
+
+      volumes:
+        - name: minio-configuration
+          projected:
+            sources:
+            - secret:
+                name: minio-creds-secret

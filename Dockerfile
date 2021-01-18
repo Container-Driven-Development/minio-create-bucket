@@ -1,10 +1,7 @@
-FROM minio/mc:RELEASE.2020-11-25T23-04-07Z
+FROM minio/mc:RELEASE.2021-01-05T05-03-58Z
 
-ENV MC_CONFIG_DIR /etc/minio/mc/
 ENV BUCKET default
-ENV SVC_NAME minio
-ENV NAMESPACE minio
 
-COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/initialize.sh"]
 
-ENTRYPOINT ["/entrypoint.sh"]
+COPY initialize.sh /initialize.sh
