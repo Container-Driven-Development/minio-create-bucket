@@ -1,6 +1,6 @@
 # Minio create bucket
 
-Create minio bucket image and Kubernetes job
+Create minio bucket image and Kubernetes job based on https://github.com/minio/charts/blob/master/minio/templates/_helper_create_bucket.txt
 
 
 ## Why?
