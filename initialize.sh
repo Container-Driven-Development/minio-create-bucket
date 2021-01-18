@@ -90,4 +90,5 @@ createBucket() {
 # Try connecting to Minio instance
 connectToMinio
 # Create the bucket
-createBucket bucket none false
+createBucket $BUCKET $POLICY $PURGE $VERSIONING
+
