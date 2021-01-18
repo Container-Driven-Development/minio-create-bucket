@@ -7,7 +7,6 @@ MC="/usr/bin/mc --insecure --config-dir ${MC_CONFIG_DIR}"
 # connectToMinio
 # Use a check-sleep-check loop to wait for Minio service to be available
 connectToMinio() {
-  SCHEME=$1
   ATTEMPTS=0 ; LIMIT=29 ; # Allow 30 attempts
   set -e ; # fail if we can't read the keys.
   ACCESS=$(cat /config/accesskey) ; SECRET=$(cat /config/secretkey) ;
@@ -89,7 +88,6 @@ createBucket() {
 }
 
 # Try connecting to Minio instance
-scheme=http
-connectToMinio $scheme
+connectToMinio
 # Create the bucket
 createBucket bucket none false
